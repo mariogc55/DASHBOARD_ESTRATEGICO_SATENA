@@ -52,37 +52,133 @@ body {
 
 /* ── Navbar ─────────────────────────────────────────────────── */
 .satena-navbar {
-  background: linear-gradient(100deg, var(--satena-azul-oscuro) 0%, var(--satena-azul) 55%, var(--satena-azul-medio) 100%);
-  box-shadow: 0 2px 12px rgba(7,42,102,0.4), 0 1px 0 rgba(255,255,255,0.08) inset;
-  padding-top: 0.6rem;
-  padding-bottom: 0.6rem;
+  background: linear-gradient(105deg,
+    var(--satena-azul-oscuro) 0%,
+    var(--satena-azul)        50%,
+    var(--satena-azul-medio)  100%);
+  box-shadow:
+    0 2px 16px rgba(7,42,102,0.45),
+    0 1px 0 rgba(255,255,255,0.1) inset;
+  padding-top: 0;
+  padding-bottom: 0;
+  min-height: 58px;
   position: sticky;
   top: 0;
   z-index: 1030;
+  border-bottom: 3px solid var(--satena-amarillo);
+}
+
+.satena-navbar .container-fluid {
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
 }
 
 .satena-navbar .navbar-brand {
   font-size: 1rem;
+  font-weight: 700;
   letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
+.satena-navbar .navbar-brand::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 22px;
+  background: var(--satena-amarillo);
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* Badge SIOP-DS */
+.satena-navbar .nav-link {
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(255,193,7,0.18) !important;
+  border: 1px solid rgba(255,193,7,0.45) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 0.25rem 0.65rem !important;
+  color: #ffc107 !important;
+  transition: var(--transition-fast);
+}
+
+.satena-navbar .nav-link:hover {
+  background: rgba(255,193,7,0.3) !important;
+}
+
+/* Botones de accion en navbar */
 .navbar-action-btn {
   border-radius: var(--radius-sm) !important;
   font-size: 0.78rem !important;
   font-weight: 600 !important;
-  letter-spacing: 0.025em;
-  padding: 0.3rem 0.85rem !important;
-  transition: var(--transition-fast);
-  border: none !important;
+  letter-spacing: 0.03em;
+  padding: 0.35rem 1rem !important;
+  transition: var(--transition-fast) !important;
 }
 
 .navbar-action-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.22) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.28) !important;
 }
 
 .navbar-action-btn:active {
   transform: translateY(0);
+}
+
+/* Boton Cargar Excel — outline blanco */
+#upload-data-xlsx .btn {
+  background: rgba(255,255,255,0.12) !important;
+  border: 1.5px solid rgba(255,255,255,0.55) !important;
+  color: white !important;
+  backdrop-filter: blur(4px);
+}
+
+#upload-data-xlsx .btn:hover {
+  background: rgba(255,255,255,0.22) !important;
+  border-color: white !important;
+}
+
+/* Separador antes de Cerrar sesion */
+.navbar-logout-col {
+  border-left: 1px solid rgba(255,255,255,0.25) !important;
+}
+
+/* Boton Cerrar sesion */
+#btn-logout {
+  background: transparent !important;
+  border: 1.5px solid rgba(255,255,255,0.4) !important;
+  color: rgba(255,255,255,0.85) !important;
+  font-size: 0.78rem !important;
+  font-weight: 500 !important;
+  padding: 0.35rem 0.9rem !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+#btn-logout:hover {
+  background: rgba(255,255,255,0.15) !important;
+  border-color: rgba(255,255,255,0.7) !important;
+  color: white !important;
+}
+
+/* Boton Limpiar Datos */
+#btn-limpiar-datos {
+  background: linear-gradient(135deg, #c82333, #dc3545) !important;
+  border: none !important;
+  box-shadow: 0 2px 8px rgba(220,53,69,0.45) !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  padding: 0.35rem 1rem !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+#btn-limpiar-datos:hover {
+  background: linear-gradient(135deg, #bd2130, #c82333) !important;
+  box-shadow: 0 4px 14px rgba(220,53,69,0.55) !important;
+  transform: translateY(-1px);
 }
 
 /* ── Cards base ─────────────────────────────────────────────── */
@@ -151,6 +247,7 @@ body {
 }
 
 .satena-kpi-value {
+  font-family: 'Inter', 'Segoe UI', sans-serif !important;
   font-size: 2rem;
   font-weight: 800;
   color: var(--satena-texto);
@@ -369,7 +466,7 @@ hr {
 }
 
 .login-brand-letter {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
   font-size: 3.8rem;
   font-weight: 900;
   letter-spacing: -0.03em;
@@ -378,12 +475,12 @@ hr {
 }
 
 /* Paleta de colores vibrantes sobre fondo azul */
-.letter-s  { color: #FFC107; }   /* Amarillo SATENA         */
-.letter-a  { color: #ffffff; }   /* Blanco                  */
-.letter-t  { color: #FFC107; }   /* Amarillo                */
-.letter-e  { color: #ffffff; }   /* Blanco                  */
-.letter-n  { color: #FFC107; }   /* Amarillo                */
-.letter-a2 { color: #ffffff; }   /* Blanco                  */
+.letter-s,
+.letter-a,
+.letter-t,
+.letter-e,
+.letter-n,
+.letter-a2 { color: #ffffff; }
 
 /* Logo en el panel derecho (fondo blando) */
 .login-right-brand-area {
@@ -459,7 +556,7 @@ hr {
 }
 
 .login-form-title {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
   color: var(--satena-azul-oscuro);
   font-weight: 800;
   font-size: 1.55rem;
@@ -658,28 +755,276 @@ hr {
   -webkit-mask-size: 55%;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
-  opacity: 0.6;
 }
 
 .empty-state-title {
-  color: var(--satena-texto);
+  font-size: 1.05rem;
   font-weight: 700;
-  font-size: 0.95rem;
+  color: var(--satena-azul-oscuro);
   margin: 0;
-  letter-spacing: -0.01em;
 }
 
 .empty-state-message {
+  font-size: 0.85rem;
   color: var(--satena-texto-suave);
-  font-size: 0.82rem;
-  max-width: 340px;
   margin: 0;
-  line-height: 1.55;
+  max-width: 320px;
+  line-height: 1.5;
 }
 
-/* KPI no-data state */
-.kpi-card .satena-kpi-value[children="--"],
-.satena-kpi-value:empty {
-  color: var(--satena-texto-xs);
-  letter-spacing: 0;
+/* ================================================
+   LOGIN PAGE  -  Split-panel corporativo
+   ================================================ */
+
+.login-split-container {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.login-brand-panel {
+  flex: 0 0 42%;
+  background: linear-gradient(160deg, var(--satena-azul-oscuro) 0%, var(--satena-azul) 55%, var(--satena-azul-medio) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-brand-panel::before {
+  content: "";
+  position: absolute;
+  bottom: -15%;
+  right: -15%;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  pointer-events: none;
+}
+
+.login-brand-panel::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+  pointer-events: none;
+}
+
+.login-panel-content {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 2.5rem;
+  text-align: left;
+  width: 100%;
+}
+
+/* Letras S·A·T·E·N·A */
+.login-panel-brand-word {
+  display: flex;
+  gap: 0.05em;
+  margin-bottom: 1.4rem;
+  line-height: 1;
+}
+
+.login-brand-letter {
+  font-family: 'Inter', sans-serif;
+  font-size: 3.8rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-shadow: 0 3px 14px rgba(0,0,0,0.3);
+  line-height: 1;
+}
+
+.letter-s,
+.letter-a,
+.letter-t,
+.letter-e,
+.letter-n,
+.letter-a2 { color: #ffffff; }
+
+.login-panel-divider {
+  width: 48px;
+  height: 3px;
+  background: var(--satena-amarillo);
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+
+.login-panel-tagline {
+  color: rgba(255,255,255,0.95);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+.login-panel-sub {
+  color: rgba(255,255,255,0.62);
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.login-form-panel {
+  flex: 1;
+  background: #f8f9fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+}
+
+.login-form-inner {
+  width: 100%;
+  max-width: 380px;
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: 2.5rem 2rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-form-accent-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--satena-azul) 0%, var(--satena-amarillo) 100%);
+}
+
+.login-form-title {
+  font-family: 'Inter', sans-serif;
+  color: var(--satena-azul-oscuro);
+  font-weight: 800;
+  font-size: 1.55rem;
+  letter-spacing: -0.04em;
+  margin-bottom: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.login-form-subtitle {
+  color: var(--satena-gris-texto, #64748b);
+  font-size: 0.85rem;
+  margin-bottom: 1.75rem;
+  line-height: 1.4;
+}
+
+.login-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--satena-texto);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 0.35rem !important;
+  display: block;
+}
+
+.login-input {
+  border: 1.5px solid var(--satena-gris-borde) !important;
+  border-radius: var(--radius) !important;
+  font-size: 0.9rem !important;
+  padding: 0.6rem 0.9rem !important;
+  background: #f9fafc !important;
+  transition: var(--transition-fast) !important;
+}
+
+.login-input:focus {
+  border-color: var(--satena-azul) !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(11,61,145,0.1) !important;
+  outline: none !important;
+}
+
+.btn-login-submit {
+  background: linear-gradient(135deg, var(--satena-azul-medio), var(--satena-azul-oscuro)) !important;
+  border: none !important;
+  border-radius: var(--radius) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em;
+  font-size: 0.9rem !important;
+  padding: 0.7rem !important;
+  box-shadow: 0 4px 14px rgba(11,61,145,0.3) !important;
+  transition: var(--transition) !important;
+  margin-top: 0.25rem;
+}
+
+.btn-login-submit:hover {
+  box-shadow: 0 6px 20px rgba(11,61,145,0.42) !important;
+  transform: translateY(-1px);
+}
+
+.btn-login-submit:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(11,61,145,0.28) !important;
+}
+
+.login-divider {
+  border-color: var(--satena-gris-borde);
+  opacity: 1;
+  margin: 1.25rem 0 1rem;
+}
+
+.login-demo-code {
+  background: var(--satena-azul-xclaro);
+  color: var(--satena-azul);
+  padding: 0.1rem 0.45rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid var(--satena-azul-claro);
+}
+
+@media (max-width: 768px) {
+  .login-split-container { flex-direction: column; }
+  .login-brand-panel { flex: 0 0 auto; min-height: 180px; padding: 1.5rem; }
+  .login-panel-content { padding: 1rem 1.5rem; }
+  .login-brand-letter { font-size: 2.8rem; }
+  .login-panel-sub { display: none; }
+  .login-form-panel { padding: 1.5rem 1rem 2rem; }
+}
+
+/* ================================================
+   MODAL LIMPIAR DATOS
+   ================================================ */
+#modal-limpiar-datos .modal-content {
+  border: none;
+  box-shadow: var(--shadow-xl);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+#modal-limpiar-datos .modal-header {
+  background: linear-gradient(100deg, var(--satena-azul-oscuro), var(--satena-azul));
+  color: var(--satena-blanco);
+  border-bottom: none;
+  padding: 1rem 1.25rem;
+}
+
+#modal-limpiar-datos .modal-header .modal-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+#modal-limpiar-datos .modal-header .btn-close {
+  filter: invert(1) brightness(2);
+  opacity: 0.8;
+}
+
+#modal-limpiar-datos .modal-body {
+  padding: 1.25rem;
+  font-size: 0.88rem;
+}
+
+#modal-limpiar-datos .modal-footer {
+  border-top: 1px solid var(--satena-gris-borde);
+  padding: 0.75rem 1.25rem;
 }

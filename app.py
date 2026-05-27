@@ -63,7 +63,6 @@ _cobit_health_initial: dict | None = None
 def login_layout() -> html.Div:
     return html.Div(
         [
-            # ---- Panel izquierdo: marca SATENA ----
             html.Div(
                 [
                     html.Div(
@@ -94,7 +93,6 @@ def login_layout() -> html.Div:
                 ],
                 className="login-brand-panel",
             ),
-            # ---- Panel derecho: formulario ----
             html.Div(
                 [
                     html.Div(
@@ -263,7 +261,7 @@ def dashboard_layout() -> html.Div:
                                         outline=True,
                                     ),
                                     width="auto",
-                                    className="d-flex align-items-center",
+                                    className="d-flex align-items-center ms-3 ps-3 navbar-logout-col",
                                 ),
                             ],
                             className="w-100 align-items-center gy-2",
@@ -480,4 +478,5 @@ seguridad.register_callbacks(app, dm)
 
 
 if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=8050)
     app.run(debug=True, host="0.0.0.0", port=8050)
