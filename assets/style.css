@@ -1,0 +1,81 @@
+:root {
+  --satena-azul: #0b3d91;
+  --satena-azul-oscuro: #072a66;
+  --satena-blanco: #ffffff;
+  --satena-gris: #f4f7fb;
+  --satena-verde: #198754;
+  --satena-rojo: #dc3545;
+  --satena-amarillo: #ffc107;
+}
+
+body {
+  background-color: var(--satena-gris);
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.satena-navbar {
+  background: linear-gradient(90deg, var(--satena-azul-oscuro), var(--satena-azul));
+  color: var(--satena-blanco);
+}
+
+.satena-card {
+  border: none;
+  box-shadow: 0 2px 8px rgba(11, 61, 145, 0.12);
+  border-radius: 0.5rem;
+}
+
+.satena-kpi-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--satena-azul);
+}
+
+.satena-kpi-label {
+  font-size: 0.85rem;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.satena-section-title {
+  color: var(--satena-azul);
+  font-weight: 600;
+  border-left: 4px solid var(--satena-azul);
+  padding-left: 0.75rem;
+  margin: 1.25rem 0 0.75rem;
+}
+
+.login-container {
+  max-width: 480px;
+  margin: 4rem auto;
+}
+
+.semaforo-verde {
+  background-color: var(--satena-verde) !important;
+  color: var(--satena-blanco) !important;
+}
+
+.semaforo-rojo {
+  background-color: var(--satena-rojo) !important;
+  color: var(--satena-blanco) !important;
+}
+
+.alert-card-critica {
+  border-left: 5px solid var(--satena-rojo);
+}
+
+.alert-card-media {
+  border-left: 5px solid var(--satena-amarillo);
+}
+
+.alert-card-baja {
+  border-left: 5px solid var(--satena-verde);
+}
+
+.upload-data-btn:hover {
+  opacity: 0.92;
+}
+
+#upload-data-xlsx {
+  display: inline-block;
+}

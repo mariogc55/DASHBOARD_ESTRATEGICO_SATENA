@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.secrets/
+*.egg-info/
+.DS_Store
+.idea/
+.vscode/
+
+# Mantener datos de prueba pero ignorar generados
+data/satena_ia_governance.xlsx
+data/modelos_meta.csv
+
+# Ignorar datos subidos por usuarios en runtime
+data/uploads/
+
+env_dashboard/
