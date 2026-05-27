@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 # FIX: no_update importado al nivel del módulo
 from dash import Input, Output, no_update, html
 from src.analytics import compute_fairness_metrics
-from src.components import build_audit_log_table, semaforo_card
+from src.components import build_audit_log_table, empty_state_card, semaforo_card
 from src.data_manager import DataManager
 
 
@@ -46,6 +46,9 @@ def register_callbacks(app, dm: DataManager) -> None:
     def load_fairness(auth_data, session_data, active_tab):
         if not auth_data or not auth_data.get("authenticated"):
             return tuple([dbc.Alert("Acceso restringido", color="warning")] * 4)
+        if not session_data:
+            es = empty_state_card("Sin datos de fairness", "Cargue un archivo Excel para ver metricas de equidad y log de auditoria.", 200)
+            return es, es, es, es
         if active_tab != "tab-fairness":
             return (no_update,) * 4
 

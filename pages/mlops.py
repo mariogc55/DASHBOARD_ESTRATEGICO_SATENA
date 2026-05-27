@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 # FIX: no_update importado al nivel del módulo
 from dash import Input, Output, no_update, dcc, html
 from src.analytics import compute_mlops_metrics
-from src.components import build_fases_bar, build_mlops_timeline, kpi_card
+from src.components import build_fases_bar, build_mlops_timeline, empty_state_card, kpi_card
 from src.data_manager import DataManager
 from src.utils import format_percent
 
@@ -44,6 +44,9 @@ def register_callbacks(app, dm: DataManager) -> None:
     def load_mlops(auth_data, session_data, active_tab):
         if not auth_data or not auth_data.get("authenticated"):
             return dbc.Alert("Acceso restringido", color="warning"), {}, {}
+        if not session_data:
+            es = empty_state_card("Sin datos de MLOps", "Cargue un archivo Excel para ver pipelines y despliegues.", 260)
+            return es, {}, {}
         if active_tab != "tab-mlops":
             return no_update, no_update, no_update
 

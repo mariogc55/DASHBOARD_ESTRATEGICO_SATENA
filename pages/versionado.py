@@ -3,7 +3,7 @@ from __future__ import annotations
 import dash_bootstrap_components as dbc
 # FIX: no_update importado al nivel del módulo
 from dash import Input, Output, no_update, dash_table, dcc, html
-from src.components import build_version_line
+from src.components import build_version_line, empty_state_card
 from src.data_manager import DataManager
 from src.utils import SATENA_AZUL, SATENA_BLANCO
 
@@ -33,6 +33,9 @@ def register_callbacks(app, dm: DataManager) -> None:
     def load_versionado(auth_data, session_data, active_tab):
         if not auth_data or not auth_data.get("authenticated"):
             return dbc.Alert("Acceso restringido", color="warning"), {}
+        if not session_data:
+            es = empty_state_card("Sin historial de versiones", "Cargue un archivo Excel para ver el versionado de SIOP-DS.", 260)
+            return es, {}
         if active_tab != "tab-versionado":
             return no_update, no_update
 

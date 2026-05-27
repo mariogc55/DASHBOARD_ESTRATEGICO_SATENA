@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 from dash import Input, Output, no_update, dcc, html
 # FIX: renombrar la función analítica para evitar colisión con la función de componentes
 from src.analytics import compute_adversarial_resilience, compute_bias_heatmap as compute_bias_df
-from src.components import build_adversarial_bar, build_bias_heatmap
+from src.components import build_adversarial_bar, build_bias_heatmap, empty_state_card
 from src.data_manager import DataManager
 
 
@@ -36,6 +36,8 @@ def register_callbacks(app, dm: DataManager) -> None:
     )
     def load_sesgos(auth_data, session_data, active_tab):
         if not auth_data or not auth_data.get("authenticated"):
+            return {}, {}
+        if not session_data:
             return {}, {}
         if active_tab != "tab-sesgos":
             return no_update, no_update

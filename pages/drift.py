@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 # FIX: no_update importado al nivel del módulo, no dentro del callback
 from dash import Input, Output, no_update, dcc, html
 from src.analytics import compute_drift_summary
-from src.components import alert_card, build_histogram_comparison, build_psi_timeline
+from src.components import alert_card, build_histogram_comparison, build_psi_timeline, empty_state_card
 from src.data_manager import DataManager
 
 
@@ -42,6 +42,9 @@ def register_callbacks(app, dm: DataManager) -> None:
     def load_drift(auth_data, session_data, active_tab):
         if not auth_data or not auth_data.get("authenticated"):
             return {}, dbc.Alert("Acceso restringido", color="warning"), None, {}
+        if not session_data:
+            es = empty_state_card("Sin datos de monitoreo", "Cargue un archivo Excel para ver drift y alertas PSI.", 260)
+            return {}, es, [], {}
         if active_tab != "tab-drift":
             return no_update, no_update, no_update, no_update
 

@@ -3,7 +3,7 @@ from __future__ import annotations
 import dash_bootstrap_components as dbc
 # FIX: no_update importado al nivel del módulo
 from dash import Input, Output, no_update, dcc, html
-from src.components import build_attack_timeline, build_incidents_table, kpi_card
+from src.components import build_attack_timeline, build_incidents_table, empty_state_card, kpi_card
 from src.data_manager import DataManager
 from src.utils import format_percent
 
@@ -39,6 +39,9 @@ def register_callbacks(app, dm: DataManager) -> None:
     def load_seguridad(auth_data, session_data, active_tab):
         if not auth_data or not auth_data.get("authenticated"):
             return dbc.Alert("Acceso restringido", color="warning"), {}, None
+        if not session_data:
+            es = empty_state_card("Sin datos de seguridad", "Cargue un archivo Excel para ver incidentes y cobertura MFA.", 240)
+            return es, {}, es
         if active_tab != "tab-seguridad":
             return no_update, no_update, no_update
 

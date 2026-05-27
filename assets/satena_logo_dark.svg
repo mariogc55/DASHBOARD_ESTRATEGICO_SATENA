@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 56">
+  <!-- Avion en azul SATENA -->
+  <g transform="translate(4, 6)">
+    <ellipse cx="22" cy="24" rx="3.5" ry="13" fill="#0B3D91" transform="rotate(-35 22 24)"/>
+    <path d="M14 22 L1 31 L6 33 L19 26 Z" fill="#0B3D91" opacity="0.85"/>
+    <path d="M27 17 L40 8 L40 13 L29 21 Z" fill="#0B3D91" opacity="0.85"/>
+    <path d="M10 33 L7 41 L12 40 L17 35 Z" fill="#0B3D91" opacity="0.65"/>
+  </g>
+  <!-- Wordmark en azul oscuro -->
+  <text x="58" y="24" font-family="'Segoe UI',Arial,sans-serif" font-size="22" font-weight="800" fill="#0B2D6E" letter-spacing="3">SATENA</text>
+  <!-- Subtitulo en gris -->
+  <text x="59" y="40" font-family="'Segoe UI',Arial,sans-serif" font-size="9" font-weight="500" fill="#6B7280" letter-spacing="2">AEROL&#237;NEAS DE COLOMBIA</text>
+  <!-- Linea accent amarilla debajo del texto -->
+  <rect x="59" y="45" width="110" height="3" rx="1.5" fill="#FFC107"/>
+</svg>

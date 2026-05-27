@@ -7,6 +7,8 @@ from src.components import (
     build_compliance_radar,
     build_gobierno_datos_bar,
     build_model_inventory_table,
+    empty_state_card,
+    no_data_kpi,
     kpi_card,
 )
 from src.data_manager import DataManager
@@ -66,6 +68,23 @@ def register_callbacks(app, dm: DataManager) -> None:
         if not auth_data or not auth_data.get("authenticated"):
             alert = dbc.Alert("Acceso restringido", color="warning")
             return alert, alert, alert, alert, alert, {}, {}, alert
+
+        if not session_data:
+            nd = no_data_kpi
+            es = empty_state_card
+            sin_datos_cobit = dbc.Alert(
+                "Cargue un archivo Excel para visualizar el estado de cumplimiento COBIT 2019.",
+                color="secondary", className="mb-0 py-2",
+            )
+            return (
+                nd("Modelos en produccion"),
+                nd("Documentacion tecnica"),
+                nd("Auditoria vigente"),
+                nd("Cumplimiento global"),
+                es("Sin inventario", "Cargue datos para ver los modelos registrados.", 220),
+                {}, {},
+                sin_datos_cobit,
+            )
 
         modelos = dm.get_modelos(session_data)
         kpis = compute_governance_kpis(modelos)

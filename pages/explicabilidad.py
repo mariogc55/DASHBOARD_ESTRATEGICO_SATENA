@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 # FIX: no_update importado al nivel del módulo
 from dash import Input, Output, no_update, dcc, html
 from src.analytics import compute_shap_values
-from src.components import build_shap_bar
+from src.components import build_shap_bar, empty_state_card
 from src.data_manager import DataManager
 
 
@@ -34,6 +34,8 @@ def register_callbacks(app, dm: DataManager) -> None:
     )
     def load_shap(auth_data, session_data, active_tab):
         if not auth_data or not auth_data.get("authenticated"):
+            return {}
+        if not session_data:
             return {}
         if active_tab != "tab-explicabilidad":
             return no_update
