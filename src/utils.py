@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import base64
 import hashlib
+import os
 from pathlib import Path
 
 from cryptography.fernet import Fernet, InvalidToken
@@ -21,9 +22,17 @@ FAIRNESS_DP_MAX = 1.25
 FAIRNESS_TPR_MAX_DIFF = 0.05
 FAIRNESS_PPV_MAX_DIFF = 0.05
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR = PROJECT_ROOT / "data"
-SECRETS_DIR = PROJECT_ROOT / ".secrets"
+IS_VERCEL = "VERCEL" in os.environ
+
+if IS_VERCEL:
+    PROJECT_ROOT = Path("/tmp")
+    DATA_DIR = PROJECT_ROOT / "data"
+    SECRETS_DIR = PROJECT_ROOT / ".secrets"
+else:
+    PROJECT_ROOT = Path(__file__).resolve().parent.parent
+    DATA_DIR = PROJECT_ROOT / "data"
+    SECRETS_DIR = PROJECT_ROOT / ".secrets"
+
 FERNET_KEY_FILE = SECRETS_DIR / "fernet.key"
 
 DEFAULT_USER = "admin.satena"
