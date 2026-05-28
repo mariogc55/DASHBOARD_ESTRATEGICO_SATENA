@@ -25,15 +25,15 @@ from src.utils import DEFAULT_PASSWORD, DEFAULT_USER, hash_password, verify_pass
 
 EXTERNAL_STYLESHEETS = [dbc.themes.BOOTSTRAP]
 
-app = dash.Dash(
+dash_app = dash.Dash(
     __name__,
     external_stylesheets=EXTERNAL_STYLESHEETS,
     suppress_callback_exceptions=True,
     title="SATENA - Gobernanza de IA",
 )
-server = app.server
+app = dash_app.server
 
-app.index_string = """<!DOCTYPE html>
+dash_app.index_string = """<!DOCTYPE html>
 <html>
     <head>
         {%metas%}
@@ -316,7 +316,7 @@ def dashboard_layout() -> html.Div:
     )
 
 
-app.layout = html.Div(
+dash_app.layout = html.Div(
     [
         dcc.Store(id="auth-store", data={"authenticated": False, "user": None}),
         dcc.Store(id="session-data-store", data=None),
@@ -326,7 +326,7 @@ app.layout = html.Div(
 )
 
 
-@app.callback(
+@dash_app.callback(
     Output("auth-store", "data"),
     Output("page-router", "children"),
     Output("login-feedback", "children"),
@@ -344,7 +344,7 @@ def login(n_clicks, user, password):
     return auth, dashboard_layout(), None
 
 
-@app.callback(
+@dash_app.callback(
     Output("auth-store", "data", allow_duplicate=True),
     Output("page-router", "children", allow_duplicate=True),
     Output("session-data-store", "data", allow_duplicate=True),
@@ -358,7 +358,7 @@ def logout(n_clicks):
     return {"authenticated": False, "user": None}, login_layout(), None, _cobit_health_initial
 
 
-@app.callback(
+@dash_app.callback(
     Output("session-data-store", "data", allow_duplicate=True),
     Output("upload-data-status", "children"),
     Output("cobit-validation-store", "data", allow_duplicate=True),
@@ -428,7 +428,7 @@ def on_upload_workbook(contents, filename):
     )
 
 
-@app.callback(
+@dash_app.callback(
     Output("modal-limpiar-datos", "is_open"),
     Input("btn-limpiar-datos", "n_clicks"),
     Input("btn-limpiar-cancelar", "n_clicks"),
@@ -445,7 +445,7 @@ def toggle_modal_limpiar(n_abrir, n_cancelar, n_confirmar, is_open):
     return is_open
 
 
-@app.callback(
+@dash_app.callback(
     Output("session-data-store", "data", allow_duplicate=True),
     Output("cobit-validation-store", "data", allow_duplicate=True),
     Output("upload-data-status", "children", allow_duplicate=True),
@@ -467,16 +467,16 @@ def limpiar_datos(n_clicks):
     return None, _cobit_health_initial, status_msg
 
 
-gobierno.register_callbacks(app, dm)
-mlops.register_callbacks(app, dm)
-versionado.register_callbacks(app, dm)
-drift.register_callbacks(app, dm)
-explicabilidad.register_callbacks(app, dm)
-fairness.register_callbacks(app, dm)
-sesgos.register_callbacks(app, dm)
-seguridad.register_callbacks(app, dm)
+gobierno.register_callbacks(dash_app, dm)
+mlops.register_callbacks(dash_app, dm)
+versionado.register_callbacks(dash_app, dm)
+drift.register_callbacks(dash_app, dm)
+explicabilidad.register_callbacks(dash_app, dm)
+fairness.register_callbacks(dash_app, dm)
+sesgos.register_callbacks(dash_app, dm)
+seguridad.register_callbacks(dash_app, dm)
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=8050)
-    app.run(debug=True, host="0.0.0.0", port=8050)
+    dash_app.run(debug=True, host="0.0.0.0", port=8050)
+    dash_app.run(debug=True, host="0.0.0.0", port=8050)
